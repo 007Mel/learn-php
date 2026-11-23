@@ -7,7 +7,9 @@
     <title>Login</title>
 </head>
 <body>
-    <?php 
+    <?php
+        session_start();
+
         function showMessage(string $message, string $category) {
             echo "<div class='{$category}'>{$message}</div>";
         }
@@ -25,7 +27,8 @@
                     }
                 }
                 if($is_authenticated) {
-                    showMessage("You have been logged, {$username}!", "success");
+                    $_SESSION["name"] = $username;
+                    header("Location: home.php");
                 } else {
                     showMessage("Username or password invalid!", "danger");
                 }
