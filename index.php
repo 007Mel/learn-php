@@ -10,27 +10,26 @@
     <?php
         session_start();
 
-        function showMessage(string $message, string $category) {
-            echo "<div class='{$category}'>{$message}</div>";
-        }
+        require_once __DIR__ . '/utils.php';
 
         if(isset($_POST["submit"])) {
-            $username = $_POST["username"];
+            $email = $_POST["email"];
             $password = $_POST["password"];
             $is_authenticated = false;
             $users = require 'database.php';
 
-            if($username && $password) {
+            if($email && $password) {
                 foreach($users as $user) {
-                    if($username == $user["username"] && $password == $user["password"]) {
+                    if($email == $user["email"] && $password == $user["password"]) {
                         $is_authenticated = true;
+                        $username = $user["username"];
                     }
                 }
                 if($is_authenticated) {
                     $_SESSION["name"] = $username;
                     header("Location: home.php");
                 } else {
-                    showMessage("Username or password invalid!", "danger");
+                    showMessage("Email or password invalid!", "danger");
                 }
             } else {
                 showMessage("All fields are required!", "danger");
@@ -41,8 +40,8 @@
     <div class="login-box box">
         <h1 class="title">Login</h1>
         <form action="index.php" method="post">
-            <label>Username</label> <br>
-            <input type="text" name="username"> <br>
+            <label>Email</label> <br>
+            <input type="text" name="email"> <br>
             <label>Password</label> <br>
             <input type="password" name="password"> <br>
             <input type="submit" value="Log In" name="submit" class="sub-btn">

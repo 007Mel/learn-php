@@ -7,6 +7,17 @@
     <title>Register</title>
 </head>
 <body>
+    <?php 
+        require_once __DIR__ . '/utils.php';
+
+        if(isset($_POST["sign"])) {
+            $username = $_POST["username"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $confirmPassword = $_POST["confirm_password"];
+            
+        }
+    ?>
     <div class="registration-box box">
         <h1 class="title">Registration</h1>
         <form action="register.php" method="post">

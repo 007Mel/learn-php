@@ -11,7 +11,7 @@
         [
             "id" => 2,
             "username" => "Pam",
-            "email" => "john@gmail.com",
+            "email" => "pam@gmail.com",
             "password" => "2222"
         ],
         [
